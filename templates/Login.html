@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Meta-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="home.css"/> -->
+
+    <!-- connecting Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Serif Display">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+
+    <title>Speech Emotion Prediction</title>
+    <link rel="stylesheet" href="../staticFiles/style.css">
+</head>
+
+<body>
+    <section class="authenticate-form">
+        <form class="form" method="post" action="{{ url_for('login') }}">
+            <div class="title">Welcome,<br><span>Login to continue</span></div>
+            <input type="text" placeholder="username" name="username" class="input">
+            <input type="password" placeholder="Password" name="password" class="input">
+            <input class="button-confirm" type="submit" value="Log in"> 
+            <a class="suggest" href="{{url_for('signup')}}">create an account</a>
+        </form>
+    </section>
+</body>
+
+</html>
