@@ -26,8 +26,62 @@
                     var file = $(this)[0].files[0];
                     var url = URL.createObjectURL(file);
                     $("#audio-player").attr("src", url);
+                    visualizeAudio(url);
                 });
             });
+
+
+   // Function to visualize audio waveform
+   function visualizeAudio(url) {
+      var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      var canvas = document.getElementById("waveform");
+      var canvasContext = canvas.getContext("2d");
+
+      var audioElement = document.getElementById("audio-player");
+      var audioSource = audioContext.createMediaElementSource(audioElement);
+      
+      var analyserNode = audioContext.createAnalyser();
+      analyserNode.fftSize = 2048;
+
+      audioSource.connect(analyserNode);
+      analyserNode.connect(audioContext.destination);
+
+      var bufferLength = analyserNode.frequencyBinCount;
+      var dataArray = new Uint8Array(bufferLength);
+
+      function draw() {
+        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+        analyserNode.getByteTimeDomainData(dataArray);
+
+        canvasContext.lineWidth = 2;
+        canvasContext.strokeStyle = "rgb(13, 208, 243)";
+        canvasContext.beginPath();
+
+        var sliceWidth = canvas.width * 1.0 / bufferLength;
+        var x = 0;
+
+        for (var i = 0; i < bufferLength; i++) {
+          var v = dataArray[i] / 128.0;
+          var y = v * canvas.height / 2;
+
+          if (i === 0) {
+            canvasContext.moveTo(x, y);
+          } else {
+            canvasContext.lineTo(x, y);
+          }
+
+          x += sliceWidth;
+        }
+
+        canvasContext.lineTo(canvas.width, canvas.height / 2);
+        canvasContext.stroke();
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    }
+
         </script>
     </head>
 
@@ -55,6 +109,8 @@
                             <audio id="audio-player" controls>
                                 Your browser does not support the audio element.
                             </audio>
+                            <br/>
+                            <canvas id="waveform" width="400" height="50"></canvas>
                             <br/>
                             <input class="predict" type="submit" value="Predict"/>
                         </form>
