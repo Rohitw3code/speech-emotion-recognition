@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Meta-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="home.css"/> -->
+
+    <!-- connecting Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Serif Display">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+
+    <title>Speech Emotion Prediction</title>
+    <link rel="stylesheet" href="../staticFiles/style.css">
+</head>
+
+<body>
+    <section class="reaction-container">
+        <center>
+            <div class="pred_text">
+               <p style="color: rgb(3, 55, 95); margin-top: 20px;">Model Prediction</p>  {{mode.upper()}}
+            </div>    
+        </center>
+        <div class="reaction-gap">
+            <div class="reaction">
+                <div class="card_box {%if mode == 'angry'%} active {%endif%}">
+                    <div class="card angry">
+                        <img src="{{ url_for('static', filename='angry.png') }}" alt="angry">
+                        <h2>ANGRY</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'disgust'%} active {%endif%}">
+                    <div class="card disgust">
+                        <img src="{{ url_for('static', filename='disgust.png') }}" alt="disgust">
+                        <h2>DISGUST</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'fear'%} active {%endif%}">
+                    <div class="card fear">
+                        <img src="{{ url_for('static', filename='fear.jpg') }}" alt="fear">
+                        <h2>FEAR</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'happy'%} active {%endif%}">
+                    <div class="card happy">
+                        <img src="{{ url_for('static', filename='happy.png') }}" alt="happy">
+                        <h2>HAPPY</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'sad'%} active {%endif%}">
+                    <div class="card sad">
+                        <img src="{{ url_for('static', filename='sad.png') }}" alt="sad">
+                        <h2>SAD</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'neutral'%} active {%endif%}">
+                    <div class="card neutral">
+                        <img src="{{ url_for('static', filename='neutral.png') }}" alt="neutral">
+                        <h2>NEUTRAL</h2>
+                    </div>
+                </div>
+                <div class="card_box {%if mode == 'ps'%} active {%endif%}">
+                    <div class="card ps">
+                        <img src="{{ url_for('static', filename='ps.png') }}" alt="ps">
+                        <h2>surprise</h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

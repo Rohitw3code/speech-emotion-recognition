@@ -6,7 +6,7 @@ import librosa
 import librosa.display
 
 
-model = keras.models.load_model('./speech_model.h5')
+model = keras.models.load_model('./model//speech_model.h5')
 labels = ['fear', 'angry', 'disgust', 'neutral', 'sad', 'ps', 'happy']
 
 app = Flask(__name__, template_folder='templates', static_folder='staticFiles')
@@ -30,9 +30,13 @@ def check_credentials(username, password):
                 return True
     return False
 
-@app.route("/")
+
+
+@app.route("/home")
 def home():
     return render_template("home.html")
+
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -43,7 +47,9 @@ def signup():
         return redirect(url_for('login'))
     return render_template('signup.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+
+
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -68,7 +74,7 @@ def upload_file1():
         pred_X = np.array(pred_X)
         pred_X = np.expand_dims(pred_X, -1)
         pred = labels[model.predict(pred_X)[0].argmax()]
-        return "hello "+str(f.filename)+" "+ str(pred)
+        return render_template('reaction.html',mode=str(pred))
 
 
 if __name__ == "__main__":
