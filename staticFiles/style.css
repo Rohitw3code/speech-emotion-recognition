@@ -21,6 +21,12 @@
   height: 40px;
 }
 
+#audio-player::-webkit-media-controls-panel {
+  background-color: #3669f4;
+  color: #ffffff;
+  background: linear-gradient(50deg,rgb(231, 61, 92) 20%,rgb(80, 117, 218));
+}
+
 *{
     margin: 0;
     padding: 0;
