@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
-<head>
-    <!--Meta-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <!--Meta-->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta
+        name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--Fontawesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="home.css"/> -->
+        <!--Fontawesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <!-- <link rel="stylesheet" href="home.css"/> -->
 
-    <!-- connecting Google fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Serif Display">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <!-- connecting Google fonts-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Serif Display">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 
-    <title>Speech Emotion Prediction</title>
-    <link rel="stylesheet" href="../staticFiles/style.css">
-</head>
+        <title>Speech Emotion Prediction</title>
+        <link rel="stylesheet" href="../staticFiles/style.css">
 
-<body>
-    <div class="heading">
-        <span>Speech Emotion Prediction <i class="fa-solid fa-wand-magic-sparkles"></i></span>
-    </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () { // Function to handle file selection
+                $("#fileInput").change(function () {
+                    var file = $(this)[0].files[0];
+                    var url = URL.createObjectURL(file);
+                    $("#audio-player").attr("src", url);
+                });
+            });
+        </script>
+    </head>
 
-    <!-- <p><a href="{{ url_for('signup') }}">Sign up</a></p>
-    <p><a href="{{ url_for('login') }}">Log in</a></p> -->
-    
-    <section class="Main">
-        <a class="logout" href="{{ url_for('login') }}">logout</a>
-        <div class="container">
-            <div class="Packed">
-                <div class="Head">
-                    <h1>EmoSpeech</h1>
-                </div>
+    <body>
+        <div class="heading">
+            <span>Speech Emotion Prediction
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </span>
+        </div>
+
+        <section class="Main">
+            <a class="logout" href="{{ url_for('login') }}">logout</a>
+            <div class="container">
+                <div class="Packed">
+                    <div class="Head">
+                        <h1>EmoSpeech</h1>
+                    </div>
 
 
-                <div class="audio-container">
-                    <h1>Select Audio file</span>
-                        <h2>Make sure audio file is in .wav format.</span>
-                            <form action="/predict2" method="POST" enctype="multipart/form-data">
-                                <input id="fileInput" class="select_file" type="file" name="file" />
-                                <br />
-                                <input class="predict" type="submit" value="Predict" />
-                            </form>
+                    <div class="audio-container">
+                        <h1>Select Audio file</span>
+                        <form action="/predict2" method="POST" enctype="multipart/form-data">
+                            <input id="fileInput" class="select_file" type="file" name="file"/>
+                            <br/>
+                            <audio id="audio-player" controls>
+                                Your browser does not support the audio element.
+                            </audio>
+                            <br/>
+                            <input class="predict" type="submit" value="Predict"/>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!--Integrating javascript file -->
-    <script src="./main.js"></script>
-</body>
+        <!--Integrating javascript file -->
+        <script src="./main.js"></script>
+    </body>
 
 </html>
