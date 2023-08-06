@@ -138,9 +138,25 @@ body{
 
 /* section  styling starts from here */
 
+.nav_btn{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.about{
+  z-index: 9;
+  text-decoration: none;
+  border-radius: 10px;
+  padding-inline:20px;
+  padding-block: 15px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  margin: 30px;
+  background: linear-gradient(50deg,rgb(7, 68, 234) 20%,rgb(237, 1, 60));
+}
+
 .logout{
-    position: absolute;
-    right: 0;
     z-index: 9;
     text-decoration: none;
     border-radius: 10px;
