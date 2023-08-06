@@ -9,7 +9,7 @@ import librosa.display
 model = keras.models.load_model('./model/speech_model.h5')
 
 # Categories (Emotion category)
-labels = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'ps', 'sad']
+labels = ['angry', 'fear', 'happy', 'neutral', 'ps', 'sad']
 
 # Initializing Flask
 app = Flask(__name__, template_folder='templates', static_folder='staticFiles')
